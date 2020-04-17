@@ -4,7 +4,7 @@
   "description": "",
   "main": "greeter.js",
   "scripts": {
-    "test": "jest --watch --coverage "
+    "test": "jest --coverage "
   },  
   "jest": {
     "moduleFileExtensions": [
