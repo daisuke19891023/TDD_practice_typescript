@@ -4,7 +4,8 @@
   "description": "",
   "main": "greeter.js",
   "scripts": {
-    "test": "jest --coverage "
+    "test": "jest --coverage ",
+    "clear_jest": "jest --clearCache"
   },  
   "jest": {
     "moduleFileExtensions": [
