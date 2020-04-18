@@ -9,4 +9,6 @@ describe('franc のテスト', () => {
         const five  = new Franc(5)
         expect(five.times(3)).toStrictEqual(new Franc(15));
         });
+    it('equal method:true', () => expect(new Franc(5).equal(new Franc(5))).toBeTruthy())
+    it('equal method:false', () => expect(new Franc(5).equal(new Franc(6))).toBeFalsy())
 });
