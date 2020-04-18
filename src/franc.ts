@@ -5,11 +5,8 @@ import { Money } from "./money"
         constructor(amount:number){
             super(amount)
         }
-        times(multiplier:number):Franc{
+        times(multiplier:number):Money{
             return new Franc(this.amount * multiplier)
 
-        }
-        equal(franc:Money):boolean{
-            return this.amount === franc.getAmount()
         }
     }
