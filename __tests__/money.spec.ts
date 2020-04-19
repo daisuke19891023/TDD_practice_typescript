@@ -24,3 +24,8 @@ describe('franc のテスト', () => {
     it('equal method:true', () => expect(Money.franc(5).equal(Money.franc(5))).toBeTruthy())
     it('equal method:false', () => expect(Money.franc(5).equal(Money.franc(6))).toBeFalsy())
 });
+
+describe('通貨のテスト',() =>{
+    it("USD",() => expect("USD").toBe(Money.dollar(1).currency()))
+    it("CHF",() => expect("CHF").toBe(Money.franc(1).currency()))
+})
