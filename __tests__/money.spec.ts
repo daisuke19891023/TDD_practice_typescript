@@ -1,5 +1,6 @@
 import { Money } from '../src/money';
 import { Bank } from '../src/bank';
+import { Sum } from '../src/sum';
 describe('dollar のテスト', () => {
     it('2 * 5 = 10, 3 * 5 = 15', () => {
         const five  = Money.dollar(5)
@@ -33,4 +34,17 @@ describe('sum',() =>{
         const reduced = bank.reduce(sum, "USD")
         expect(Money.dollar(10)).toEqual(reduced);
         });
+    it('testPlusReturnSum', () => {
+        const five = Money.dollar(5)
+        const result = five.plus(five)
+        const sum = result as Sum
+        expect(five).toEqual(sum.augend);
+        expect(five).toEqual(sum.addend);
+    })
+    it('testReducceSum', () => {
+        const sum = new Sum(Money.dollar(3), Money.dollar(4))
+        const bank = new Bank()
+        const result = bank.reduce(sum, "USD")
+        expect(Money.dollar(7)).toEqual(result);
+    })
 })
