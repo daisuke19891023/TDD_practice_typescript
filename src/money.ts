@@ -18,27 +18,13 @@ export class Money{
     public getClass():string{
         return this.constructor.name
     }
-    public static dollar(amount:number):Dollar{
-        return new Dollar(amount,"USD")
+    public static dollar(amount:number):Money{
+        return new Money(amount,"USD")
     }
-    public static franc(amount:number):Franc{
-        return new Franc(amount,"CHF")
+    public static franc(amount:number):Money{
+        return new Money(amount,"CHF")
     }
     currency():string{
         return this.currencyName
-    }
-}
-
-export class Franc extends Money {
-
-    constructor(amount:number, currencyName:string){
-        super(amount,currencyName)
-    }
-
-}
-
-export class Dollar extends Money{
-    constructor(amount:number, currencyName:string){
-        super(amount,currencyName)
     }
 }
