@@ -1,4 +1,5 @@
 import { Money } from '../src/money';
+import { Bank } from '../src/bank';
 describe('dollar のテスト', () => {
     it('2 * 5 = 10, 3 * 5 = 15', () => {
         const five  = Money.dollar(5)
@@ -19,4 +20,17 @@ describe('等価性',() =>{
 describe('通貨のテスト',() =>{
     it("USD",() => expect("USD").toBe(Money.dollar(1).currency()))
     it("CHF",() => expect("CHF").toBe(Money.franc(1).currency()))
+})
+describe('sum',() =>{
+    it('Simple Addition', () => {
+        const sum  = Money.dollar(5).plus(Money.dollar(5))
+        expect(Money.dollar(10)).toEqual(sum);
+        });
+    it('reduced', () => {
+        const five  = Money.dollar(5)
+        const sum  = five.plus(five)
+        const bank = new Bank()
+        const reduced = bank.reduce(sum, "USD")
+        expect(Money.dollar(10)).toEqual(reduced);
+        });
 })
