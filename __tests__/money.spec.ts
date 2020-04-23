@@ -1,6 +1,7 @@
 import { Money } from '../src/money';
 import { Bank } from '../src/bank';
 import { Sum } from '../src/sum';
+import { Pair } from '../src/pair';
 describe('dollar のテスト', () => {
     it('2 * 5 = 10, 3 * 5 = 15', () => {
         const five  = Money.dollar(5)
@@ -24,10 +25,6 @@ describe('通貨のテスト',() =>{
 })
 describe('sum',() =>{
     it('Simple Addition', () => {
-        const sum  = Money.dollar(5).plus(Money.dollar(5))
-        expect(Money.dollar(10)).toEqual(sum);
-        });
-    it('reduced', () => {
         const five  = Money.dollar(5)
         const sum  = five.plus(five)
         const bank = new Bank()
@@ -51,5 +48,16 @@ describe('sum',() =>{
         const bank = new Bank()
         const result = bank.reduce(Money.dollar(1), "USD")
         expect(Money.dollar(1)).toEqual(result);
+    })
+})
+describe('convert', () => {
+    it('testReduceMoneyDifferenceCurrency',() => {
+        const bank = new Bank()
+        bank.addRate("CHF", "USD", 2)
+        const result = bank.reduce(Money.franc(2), "USD")
+        expect(result).toEqual(Money.dollar(1));
+    })
+    it('testIdentityRate', () => {   
+        expect(1).toEqual(new Bank().rate("USD", "USD"))
     })
 })
