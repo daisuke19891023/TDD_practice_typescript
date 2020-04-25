@@ -8,7 +8,7 @@ export class Money implements Expression{
             this.amount = amount
             this.currencyName = currencyName
     }
-    times(multiplier:number):Money{
+    times(multiplier:number):Expression{
         return new Money(this.amount * multiplier,this.currency())
     }
     public getAmount():number{
@@ -30,7 +30,7 @@ export class Money implements Expression{
     currency():string{
         return this.currencyName
     }
-    plus(addEnd:Money):Expression{
+    plus(addEnd:Expression):Expression{
         return new Sum(this, addEnd)
     }
     reduce(bank:Bank , to:string){

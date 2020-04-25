@@ -2,6 +2,7 @@ import { Money } from '../src/money';
 import { Bank } from '../src/bank';
 import { Sum } from '../src/sum';
 import { Pair } from '../src/pair';
+import { Expression } from '../src/expression';
 describe('dollar のテスト', () => {
     it('2 * 5 = 10, 3 * 5 = 15', () => {
         const five  = Money.dollar(5)
@@ -47,7 +48,16 @@ describe('sum',() =>{
     it('testReducceMoney', () => {
         const bank = new Bank()
         const result = bank.reduce(Money.dollar(1), "USD")
-        expect(Money.dollar(1)).toEqual(result);
+        expect(result).toEqual(Money.dollar(1));
+    })
+    it('testMixedAddition', () => {
+        const fiveBucks = Money.dollar(5) as Expression
+        const tenFrencs = Money.franc(10) as Expression
+        const bank = new Bank()
+        bank.addRate("CHF", "USD", 2)
+        const result = bank.reduce(fiveBucks.plus(tenFrencs), "USD")
+        expect(result).toEqual(Money.dollar(10))
+
     })
 })
 describe('convert', () => {
