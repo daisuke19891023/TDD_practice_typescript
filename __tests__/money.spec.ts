@@ -50,14 +50,33 @@ describe('sum',() =>{
         const result = bank.reduce(Money.dollar(1), "USD")
         expect(result).toEqual(Money.dollar(1));
     })
-    it('testMixedAddition', () => {
-        const fiveBucks = Money.dollar(5) as Expression
-        const tenFrencs = Money.franc(10) as Expression
-        const bank = new Bank()
+})
+describe('Sum Expression', () => {
+    let fiveBucks:Expression
+    let tenFrencs:Expression
+    let bank:Bank
+    beforeAll(() => {
+        fiveBucks = Money.dollar(5) as Expression
+        tenFrencs = Money.franc(10) as Expression
+    })
+    beforeEach(() => {
+        bank = new Bank()
         bank.addRate("CHF", "USD", 2)
+    })
+    it('testMixedAddition', () => {
         const result = bank.reduce(fiveBucks.plus(tenFrencs), "USD")
         expect(result).toEqual(Money.dollar(10))
 
+    })
+    it('testSumPlusMoney', () => {
+        const sum = new Sum(fiveBucks, tenFrencs).plus(fiveBucks)
+        const result = bank.reduce(sum, "USD")
+        expect(result).toEqual(Money.dollar(15))
+    })
+    it('testSumTimes', () => {
+        const sum = new Sum(fiveBucks, tenFrencs).times(2)
+        const result = bank.reduce(sum, "USD")
+        expect(result).toEqual(Money.dollar(20))        
     })
 })
 describe('convert', () => {

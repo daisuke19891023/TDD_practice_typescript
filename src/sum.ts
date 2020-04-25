@@ -13,7 +13,10 @@ export class Sum implements Expression{
     const amount = this.augend.reduce(bank, to).getAmount() + this.addend.reduce(bank, to).getAmount()
     return new Money(amount, to)
   }
-  plus(added:Expression):Expression{
-    return new Sum(this.augend, this.addend)
+  plus(addend:Expression):Expression{
+    return new Sum(this, addend)
   }
+  times(multiplier:number):Expression{
+    return new Sum(this.augend.times(multiplier), this.addend.times(multiplier))
+}
 }
