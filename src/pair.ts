@@ -1,6 +1,7 @@
+import { Md5 } from 'ts-md5/dist/md5'
 export class Pair{
-    public from:string
-    public to:string
+    private from:string
+    private to:string
     constructor(from:string,to:string){
         this.from = from
         this.to = to
@@ -9,7 +10,7 @@ export class Pair{
         const pair = object as Pair
         return this.from === pair.from && this.to === pair.to
     }
-    public hashCode():number{
-        return 0
+    public hashCode():string | Int32Array{
+        return Md5.hashStr(this.from + this.to)
     }
 }

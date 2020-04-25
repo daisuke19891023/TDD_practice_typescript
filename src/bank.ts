@@ -3,7 +3,7 @@ import {Expression} from './expression'
 import { Sum } from './sum';
 import { Pair } from './pair';
 export class Bank{
-    public rates = new Map<number, number>()
+    public rates = new Map<string | Int32Array, number>()
     reduce(source:Expression, to:string):Money{
         return source.reduce(this, to)
     }

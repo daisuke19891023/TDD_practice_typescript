@@ -62,6 +62,9 @@ describe('Sum Expression', () => {
     beforeEach(() => {
         bank = new Bank()
         bank.addRate("CHF", "USD", 2)
+        bank.addRate("USD", "USD", 1)
+        bank.addRate("CHF", "CHF", 1)
+        bank.addRate("USD", "CHF", 0.5)
     })
     it('testMixedAddition', () => {
         const result = bank.reduce(fiveBucks.plus(tenFrencs), "USD")
